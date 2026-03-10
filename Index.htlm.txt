@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plastic Pollution in the Sea</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+  margin:0;
+  background:#0f254d;
+  color:white;
+  font-family:Arial,sans-serif;
+  overflow-x:hidden;
+}
+
+/* ================= SEA INTRO ================= */
+
+#seaIntro{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:linear-gradient(#021b3a,#0a5ea8);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  cursor:pointer;
+  z-index:9999;
+  overflow:hidden;
+}
+
+.introText{
+  z-index:5;
+  backdrop-filter:blur(6px);
+  background:rgba(0,0,0,0.25);
+  padding:40px 60px;
+  border-radius:20px;
+  box-shadow:0 0 40px rgba(0,0,0,0.4);
+}
+
+.introText h1{
+  font-size:3.2em;
+  font-weight:bold;
+}
+
+.introText p{
+  opacity:.9;
+  letter-spacing:2px;
+}
+
+/* ================= WAVE ================= */
+
+.waveWrap{
+  position:absolute;
+  bottom:-200px;
+  width:200%;
+  height:500px;
+}
+
+.wave{
+  position:absolute;
+  width:200%;
+  height:500px;
+  background:
+  radial-gradient(circle at 50% 30%,rgba(255,255,255,.6),transparent 60%),
+  linear-gradient(#4fc3f7,#0288d1);
+  border-radius:40%;
+  animation:waveMove 8s linear infinite;
+}
+
+.waveRise{
+  animation:riseWave 1.6s forwards;
+}
+
+@keyframes waveMove{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
+@keyframes riseWave{
+  0%{transform:translateY(0);}
+  40%{transform:translateY(-350px);}
+  100%{transform:translateY(120vh);}
+}
+
+/* ================= HEADER ================= */
+
+header{
+  position:relative;
+  height:80vh;
+  overflow:hidden;
+}
+
+header video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  position:absolute;
+  z-index:-1;
+}
+
+.overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(15,37,77,.6);
+}
+
+h2{
+  text-align:center;
+  margin-top:2rem;
+  color:#e0f7fa;
+}
+
+section p{
+  font-size:1.1rem;
+  line-height:1.7;
+}
+
+/* ================= PAGE 2 ================= */
+
+#page2{
+  display:none;
+  padding:120px;
+  text-align:center;
+  min-height:100vh;
+  font-size:1.5rem;
+}
+
+#page2 h1{
+  font-size:4rem;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="seaIntro" onclick="enterSite()">
+
+  <div class="introText">
+    <h1>Plastic Pollution in the Sea</h1>
+    <p>Click To Dive In</p>
+  </div>
+
+  <div class="waveWrap">
+    <div class="wave" id="mainWave"></div>
+  </div>
+
+</div>
+
+<!-- NAV -->
+<nav class="navbar bg-body-tertiary mb-3">
+<div class="container-fluid">
+<form class="d-flex w-100">
+<input class="form-control me-2" placeholder="Search">
+<button class="btn btn-outline-success">Search</button>
+</form>
+</div>
+</nav>
+
+<!-- HEADER -->
+<header>
+<div class="overlay"></div>
+
+<video autoplay muted loop playsinline>
+<source src="https://media.istockphoto.com/id/1475351906/video/fishes-feeds-of-polluted-water-in-fatty-layer-swimming-among-plastic-waste.mp4?s=mp4-640x640-is&k=20&c=SqFaA0I4xsFSr45zdqpW5KFzOw2U2trdmOlL6Jbc0vM=" type="video/mp4">
+</video>
+
+<div class="container h-100 d-flex align-items-center justify-content-center text-center">
+<div>
+<h1 class="display-3">Plastic Pollution in the Sea</h1>
+<p class="lead">Eliana Grace Daka</p>
+</div>
+</div>
+</header>
+
+<!-- FACTS -->
+<h2>Starter Pack / Facts</h2>
+
+<section class="my-5">
+<div class="container">
+<div class="col-md-8 mx-auto">
+
+<p>
+Hi! This is my website about animal pollution in the sea.
+Did you know that 12 million tons of plastic enters oceans every year?
+</p>
+
+<p>
+Up to 300,000 dolphins and whales die every year because of plastic pollution.
+Together we can make a change.
+</p>
+
+<div class="text-center mt-4">
+<button class="btn btn-primary" onclick="openPage2()">Go To Page 2</button>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PAGE 2 MORE FACTS ABOUT PLASTIC POLLUTION! -->
+<div id="page2">
+
+<h1>Page 2</h1>
+<p>Press the button to turn this page blue 🩵</p>
+
+<button class="btn btn-info" onclick="makeBlue()">Make Page Blue</button>
+<br><br>
+<button class="btn btn-secondary" onclick="goBack()">Back</button>
+
+</div>
+
+<script>
+
+function enterSite(){
+  const wave=document.getElementById("mainWave");
+  const intro=document.getElementById("seaIntro");
+
+  wave.classList.add("waveRise");
+
+  setTimeout(()=>{
+    intro.style.display="none";
+  },1600);
+}
+
+function openPage2(){
+  document.getElementById("page2").style.display="block";
+  window.scrollTo(0,document.body.scrollHeight);
+}
+
+function makeBlue(){
+  document.getElementById("page2").style.backgroundColor="#a8d8ff";
+}
+
+function goBack(){
+  document.getElementById("page2").style.display="none";
+}
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
